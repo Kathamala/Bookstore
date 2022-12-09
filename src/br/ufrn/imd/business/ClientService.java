@@ -13,7 +13,7 @@ public class ClientService implements IClientService {
 	@Override
 	public void addClient(Client client) throws BusinessException, DataException {
 		Client clientBd = retrieveClientByCpf(client.getCpf());
-		
+		/*
 		String exceptions = "";
 		
 		if(clientBd.getCpf()!=null) {
@@ -28,13 +28,14 @@ public class ClientService implements IClientService {
 		
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
+		}*/
 		new ClientDAOJDBC().addClient(client);
 	}
 	
 	
 
 	public Client retrieveClientByCpf(String cpf) throws BusinessException, DataException {
+		/*
 		String exceptions = "";
 		if(cpf == null) {
 			throw new BusinessException("CPF não pode ser nulo \n");
@@ -47,7 +48,8 @@ public class ClientService implements IClientService {
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}		
+		}
+		*/
 		return new ClientDAOJDBC().retrieveClientByCpf(cpf);
 	}
 

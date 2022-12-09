@@ -8,31 +8,23 @@ public class ProductVinyl extends Product{
 		super();
 	}
 	
-	private String band;
-	private Integer year;
+	private /*@ spec_public @*/ String band;
+	private /*@ spec_public @*/ Integer year;
 	
-	
-	public String getBand() {
+	public /*@ pure @*/ String getBand() {
 		return band;
 	}
 
-
-
-
+	//@ assignable this.band;
 	public void setBand(String band) {
 		this.band = band;
 	}
 
-
-
-
-	public Integer getYear() {
+	public /*@ pure @*/ Integer getYear() {
 		return year;
 	}
 
-
-
-
+	//@ assignable this.year;
 	public void setYear(int year) {
 		this.year = year;
 	}
@@ -42,9 +34,14 @@ public class ProductVinyl extends Product{
 		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
 	}
 
-
 	@Override
+	//@ requires getBand() != null;
+	//@ requires getBand().length() < 63;
+	//@ requires getBand().length() > 1;
+	//@ requires getYear().intValue() < 2022;
+	//@ requires getYear().intValue() > 1940;
 	public void validate() throws BusinessException {
+		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
 			exceptions += "Nome do livro muito longo \n";
@@ -66,8 +63,7 @@ public class ProductVinyl extends Product{
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
-		
+		}*/
 	}
 
 }

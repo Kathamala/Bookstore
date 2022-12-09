@@ -4,36 +4,27 @@ import br.ufrn.imd.exceptions.BusinessException;
 
 public class ProductGame extends Product{
 	
-	private String publisher;
-	private String platform;
+	private /*@ spec_public @*/ String publisher;
+	private /*@ spec_public @*/ String platform;
 	
 	public ProductGame() {
 		super();
-		// TODO Auto-generated constructor sstub
 	}
 	
-
-	public String getPublisher() {
+	public /*@ pure @*/ String getPublisher() {
 		return publisher;
 	}
 
-
-
-
+	//@ assignable this.publisher;
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
 
-
-
-
-	public String getPlatform() {
+	public /*@ pure @*/ String getPlatform() {
 		return platform;
 	}
 
-
-
-
+	//@ assignable this.platform;
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
@@ -45,7 +36,14 @@ public class ProductGame extends Product{
 
 
 	@Override
+	//@ requires getPublisher() != null;
+	//@ requires getPlatform() != null;	
+	//@ requires getPublisher().length() < 63;
+	//@ requires getPublisher().length() > 1;
+	//@ requires getPlatform().length() < 63;
+	//@ requires getPlatform().length() > 1;
 	public void validate() throws BusinessException {
+		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
 			exceptions += "Nome do Jogo muito longo \n";
@@ -70,8 +68,7 @@ public class ProductGame extends Product{
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
-		
+		}*/
 	}
 
 }
