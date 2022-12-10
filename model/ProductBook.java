@@ -11,25 +11,28 @@ public class ProductBook extends Product{
 	
 	private /*@ spec_public @*/ String author;
 	
+	//@ ensures \result == this.author;
 	public /*@ pure @*/ String getAuthor() {
 		return author;
 	}
 	
 	//@ assignable this.author;
+	//@ ensures this.author == author;
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 	
 	@Override
+	//@ ensures \result == getName();
 	public String toString() {
 		return getName();
 	}
 	
 	@Override
-	//@ requires getAuthor() != null;
-	//@ requires getAuthor().length() < 63;
-	//@ requires getAuthor().length() > 1;
-	public void validate() throws BusinessException {
+	//@ requires this.getAuthor() != null;
+	//@ requires this.getAuthor().length() < 63;
+	//@ requires this.getAuthor().length() > 1;
+	public /*@ pure @*/ void validate() throws BusinessException {
 		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {

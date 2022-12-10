@@ -20,12 +20,12 @@ public class ProductService implements IProductService {
 	
 	@Override
 	public void addProduct(Product product) throws BusinessException, DataException {
+		/*
 		if((retrieveProductByBarcode(product.getBarcode())).getBarcode() != null) {
 			throw new BusinessException("C�digo de barras j� foi cadastrado em outro produto \n");
-		}
+		}*/
 		product.validate();
 		productDAO.addProduct(product);
-		
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class ProductService implements IProductService {
 
 	@Override
 	public void updateProduct(Product product) throws DataException, BusinessException {
-		String exceptions = "";
+		String exceptions = "";/*
 		Product bookDb = retrieveProductByBarcode(product.getBarcode());
 		if(product.getId() != bookDb.getId() && bookDb.getBarcode()!= null) {
 			System.out.println(retrieveProductById(product.getId()).getId());
@@ -65,7 +65,7 @@ public class ProductService implements IProductService {
 			else {
 				exceptions += "C�digo de barras j� foi cadastrado em outro produto \n";
 			}
-		}
+		}*/
 		product.validate();
 		ITagService tagService = new TagService();
 		for(Tag tag: product.getTags()) {
@@ -87,14 +87,16 @@ public class ProductService implements IProductService {
 
 	@Override
 	public Product retrieveProductById(int id) throws BusinessException, DataException {
+		/*
 		if(id < 1) {
 			throw new BusinessException("id deve ser um n�mero maior do que 0 \n");
-		}
+		}*/
 		return productDAO.retrieveProductById(id);
 	}
 
 	@Override
 	public Product retrieveProductByBarcode(String barcode) throws BusinessException, DataException {
+		/*
 		String exceptions = "";
 		if(barcode == null) {
 			throw new BusinessException("O c�digo de barras n�o pode ser nulo \n");
@@ -107,7 +109,7 @@ public class ProductService implements IProductService {
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}		
+		}		*/
 		return productDAO.retrieveProductByBarcode(barcode);
 	}
 

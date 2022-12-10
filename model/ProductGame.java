@@ -11,38 +11,43 @@ public class ProductGame extends Product{
 		super();
 	}
 	
+	//@ ensures \result == this.publisher;
 	public /*@ pure @*/ String getPublisher() {
 		return publisher;
 	}
 
 	//@ assignable this.publisher;
+	//@ ensures this.publisher == publisher;
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
 
+	//@ ensures \result == this.platform;
 	public /*@ pure @*/ String getPlatform() {
 		return platform;
 	}
 
 	//@ assignable this.platform;
+	//@ ensures this.platform == platform;
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
 
 	@Override
+	//@ ensures \result == getName();
 	public String toString() {
 		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
 	}
 
 
 	@Override
-	//@ requires getPublisher() != null;
-	//@ requires getPlatform() != null;	
-	//@ requires getPublisher().length() < 63;
-	//@ requires getPublisher().length() > 1;
-	//@ requires getPlatform().length() < 63;
-	//@ requires getPlatform().length() > 1;
-	public void validate() throws BusinessException {
+	//@ requires this.getPublisher() != null;
+	//@ requires this.getPlatform() != null;	
+	//@ requires this.getPublisher().length() < 63;
+	//@ requires this.getPublisher().length() > 1;
+	//@ requires this.getPlatform().length() < 63;
+	//@ requires this.getPlatform().length() > 1;
+	public /*@ pure @*/ void validate() throws BusinessException {
 		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
