@@ -9,22 +9,31 @@ public class ProductBook extends Product{
 		super();
 	}
 	
-	private String author;
+	private /*@ spec_public @*/ String author;
 	
-	public String getAuthor() {
+	//@ ensures \result == this.author;
+	public /*@ pure @*/ String getAuthor() {
 		return author;
 	}
+	
+	//@ assignable this.author;
+	//@ ensures this.author == author;
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 	
+	@Override
+	//@ ensures \result == getName();
+	public String toString() {
+		return getName();
+	}
 	
 	@Override
-	public String toString() {
-		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
-	}
-	@Override
-	public void validate() throws BusinessException {
+	//@ requires this.getAuthor() != null;
+	//@ requires this.getAuthor().length() < 63;
+	//@ requires this.getAuthor().length() > 1;
+	public /*@ pure @*/ void validate() throws BusinessException {
+		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
 			exceptions += "Nome do livro muito longo \n";
@@ -43,6 +52,6 @@ public class ProductBook extends Product{
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
+		}*/
 	}
 }

@@ -8,43 +8,45 @@ public class ProductVinyl extends Product{
 		super();
 	}
 	
-	private String band;
-	private Integer year;
+	private /*@ spec_public @*/ String band;
+	private /*@ spec_public @*/ Integer year;
 	
-	
-	public String getBand() {
+	//@ ensures \result == this.band;
+	public /*@ pure @*/ String getBand() {
 		return band;
 	}
 
-
-
-
+	//@ assignable this.band;
+	//@ ensures this.band == band;
 	public void setBand(String band) {
 		this.band = band;
 	}
 
-
-
-
-	public Integer getYear() {
+	//@ ensures \result == this.year;
+	public /*@ pure @*/ Integer getYear() {
 		return year;
 	}
 
-
-
-
+	//@ assignable this.year;
+	//@ ensures this.year == year;
 	public void setYear(int year) {
 		this.year = year;
 	}
 
 	@Override
+	//@ ensures \result == getName();
 	public String toString() {
 		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
 	}
 
-
 	@Override
-	public void validate() throws BusinessException {
+	//@ requires this.getBand() != null;
+	//@ requires this.getBand().length() < 63;
+	//@ requires this.getBand().length() > 1;
+	//@ requires this.getYear().intValue() < 2022;
+	//@ requires this.getYear().intValue() > 1940;
+	public /*@ pure @*/ void validate() throws BusinessException {
+		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
 			exceptions += "Nome do livro muito longo \n";
@@ -66,8 +68,7 @@ public class ProductVinyl extends Product{
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
-		
+		}*/
 	}
 
 }

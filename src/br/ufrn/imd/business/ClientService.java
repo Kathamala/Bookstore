@@ -12,8 +12,8 @@ public class ClientService implements IClientService {
 
 	@Override
 	public void addClient(Client client) throws BusinessException, DataException {
+		/*
 		Client clientBd = retrieveClientByCpf(client.getCpf());
-		
 		String exceptions = "";
 		
 		if(clientBd.getCpf()!=null) {
@@ -28,13 +28,12 @@ public class ClientService implements IClientService {
 		
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
+		}*/
 		new ClientDAOJDBC().addClient(client);
 	}
 	
-	
-
-	public Client retrieveClientByCpf(String cpf) throws BusinessException, DataException {
+	public /*@ pure @*/ Client retrieveClientByCpf(String cpf) throws BusinessException, DataException {
+		/*
 		String exceptions = "";
 		if(cpf == null) {
 			throw new BusinessException("CPF não pode ser nulo \n");
@@ -47,11 +46,10 @@ public class ClientService implements IClientService {
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}		
+		}
+		*/
 		return new ClientDAOJDBC().retrieveClientByCpf(cpf);
 	}
-
-
 
 	@Override
 	public void removeClient(Client client) throws BusinessException, DataException {
@@ -73,6 +71,7 @@ public class ClientService implements IClientService {
 
 	@Override
 	public void updateClient(Client client) throws DataException, BusinessException{
+		/*
 		Client clientBd = retrieveClientByCpf(client.getCpf());
 		String exceptions = "";
 		if(clientBd.getId() != client.getId() && clientBd.getCpf()!=null) {
@@ -93,22 +92,22 @@ public class ClientService implements IClientService {
 		
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
+		}*/
 		new ClientDAOJDBC().updateClient(client);
 
 	}
 
 	@Override
-	public List<Client> listClients() throws DataException {
+	public /*@ pure @*/ List<Client> listClients() throws DataException {
 		return new ClientDAOJDBC().listClients();
 	}
 
 	@Override
-	public Client retrieveClientById(int id) throws DataException, BusinessException{
+	public /*@ pure @*/ Client retrieveClientById(int id) throws DataException, BusinessException{
+		/*
 		if(id < 1) {
 			throw new BusinessException("Cliente não encontrado\n");
-		}
+		}*/
 		return new ClientDAOJDBC().retrieveClientById(id);
-		
 	}
 }

@@ -4,48 +4,51 @@ import br.ufrn.imd.exceptions.BusinessException;
 
 public class ProductGame extends Product{
 	
-	private String publisher;
-	private String platform;
+	private /*@ spec_public @*/ String publisher;
+	private /*@ spec_public @*/ String platform;
 	
 	public ProductGame() {
 		super();
-		// TODO Auto-generated constructor sstub
 	}
 	
-
-	public String getPublisher() {
+	//@ ensures \result == this.publisher;
+	public /*@ pure @*/ String getPublisher() {
 		return publisher;
 	}
 
-
-
-
+	//@ assignable this.publisher;
+	//@ ensures this.publisher == publisher;
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
 
-
-
-
-	public String getPlatform() {
+	//@ ensures \result == this.platform;
+	public /*@ pure @*/ String getPlatform() {
 		return platform;
 	}
 
-
-
-
+	//@ assignable this.platform;
+	//@ ensures this.platform == platform;
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
 
 	@Override
+	//@ ensures \result == getName();
 	public String toString() {
 		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
 	}
 
 
 	@Override
-	public void validate() throws BusinessException {
+	//@ requires this.getPublisher() != null;
+	//@ requires this.getPlatform() != null;	
+	//@ requires this.getPublisher().length() < 63;
+	//@ requires this.getPublisher().length() > 1;
+	//@ requires this.getPlatform().length() < 63;
+	//@ requires this.getPlatform().length() > 1;
+	public /*@ pure @*/ void validate() throws BusinessException {
+		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
 			exceptions += "Nome do Jogo muito longo \n";
@@ -70,8 +73,7 @@ public class ProductGame extends Product{
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
-		
+		}*/
 	}
 
 }
