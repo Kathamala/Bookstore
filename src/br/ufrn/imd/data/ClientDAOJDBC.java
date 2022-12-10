@@ -65,7 +65,7 @@ public class ClientDAOJDBC implements ClientDAO{
 	}
 
 	@Override
-	public List<Client> listClients() throws DataException {
+	public /*@ pure @*/ List<Client> listClients() throws DataException {
 		
 		List<Client> listClients = new ArrayList<Client>();
 		
@@ -93,7 +93,7 @@ public class ClientDAOJDBC implements ClientDAO{
 	}
 
 	@Override
-	public Client retrieveClientById(int id) throws DataException{
+	public /*@ pure @*/ Client retrieveClientById(int id) throws DataException{
 		try {
 			String clientSql = "SELECT * FROM public.client WHERE id="+id;
 			PreparedStatement prepstmt = connection.prepareStatement(clientSql);
@@ -116,7 +116,7 @@ public class ClientDAOJDBC implements ClientDAO{
 	}
 	
 	@Override
-	public Client retrieveClientByCpf(String cpf) throws DataException {
+	public /*@ pure @*/ Client retrieveClientByCpf(String cpf) throws DataException {
 		try {
 			String clientSql = "SELECT * FROM public.client WHERE cpf='"+cpf+"'" ;
 			PreparedStatement prepstmt = connection.prepareStatement(clientSql);

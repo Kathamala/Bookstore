@@ -9,20 +9,24 @@ public class Tag {
 		super();
 	}
 	
+	//@ ensures \result == this.id;
 	public /*@ pure @*/ int getId() {
 		return id;
 	}
 	
 	//@ assignable this.id;
+	//@ ensures this.id == id;
 	public void setId(int id) {
 		this.id = id;
 	}
 	
+	//@ ensures \result == this.name;
 	public /*@ pure @*/ String getName() {
 		return name;
 	}
 	
 	//@ assignable this.name;
+	//@ ensures this.name == name;
 	public void setName(String name) {
 		this.name = name;
 	}

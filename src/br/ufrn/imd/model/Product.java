@@ -20,44 +20,53 @@ public abstract class Product {
 	//@ requires getName().length() < 63;
 	//@ requires getName().length() > 1;
 	//@ requires getPrice() >= 0;
-	public abstract void validate() throws BusinessException;
+	public /*@ pure @*/ abstract void validate() throws BusinessException;
 
+	//@ ensures \result == this.id;
 	public /*@ pure @*/ int getId() {
 		return id;
 	}
 
 	//@ assignable this.id;
+	//@ ensures this.id == id;
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	//@ ensures \result == this.name;
 	public /*@ pure @*/ String getName() {
 		return name;
 	}
 
 	//@ assignable this.name;
+	//@ ensures this.name == name;
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	//@ ensures \result == this.description;
 	public /*@ pure @*/ String getDescription() {
 		return description;
 	}
 
 	//@ assignable this.description;
+	//@ ensures this.description == description;
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	//@ ensures \result == this.tags;
 	public /*@ pure @*/ ArrayList<Tag> getTags() {
 		return tags;
 	}
 
 	//@ assignable this.tags;
+	//@ ensures this.tags == tags;
 	public void setTags(ArrayList<Tag> tags) {
 		this.tags = tags;
 	}
 
+	//@ ensures \result == this.price;
 	public /*@ pure @*/ double getPrice() {
 		return price;
 	}
@@ -71,24 +80,38 @@ public abstract class Product {
 	}
 	
 	//@ assignable this.price;
+	//@ ensures this.price == price;
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	//@ ensures \result == this.barcode;
 	public /*@ pure @*/ String getBarcode() {
 		return barcode;
 	}
 
 	//@ assignable this.barcode;
+	//@ ensures this.barcode == barcode;
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
 	
+	/*@ requires obj instanceof Product;
+	@	ensures \result == (this.getId() == ((Product)obj).getId());
+	@ also
+	@ 	requires !(obj instanceof Product);
+	@	ensures \result == super.equals(obj);
+	@ */
 	public boolean equals(Object obj) {
 		if(obj instanceof Product) {
 			return this.getId() == ((Product)obj).getId();
 		}
 		return super.equals(obj);
 	}
-	
 }
+
+
+
+
+
+

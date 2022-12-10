@@ -13,9 +13,9 @@ public interface ClientDAO {
 	
 	public void updateClient(Client client) throws DataException;
 	
-	public List<Client> listClients() throws DataException;
+	public /*@ pure @*/ List<Client> listClients() throws DataException;
 	
-	public Client retrieveClientById(int id) throws DataException;
+	public /*@ pure @*/ Client retrieveClientById(int id) throws DataException;
 
-	public Client retrieveClientByCpf(String cpf) throws DataException;
+	public /*@ pure @*/ Client retrieveClientByCpf(String cpf) throws DataException;
 }

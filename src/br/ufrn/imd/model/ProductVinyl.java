@@ -11,36 +11,41 @@ public class ProductVinyl extends Product{
 	private /*@ spec_public @*/ String band;
 	private /*@ spec_public @*/ Integer year;
 	
+	//@ ensures \result == this.band;
 	public /*@ pure @*/ String getBand() {
 		return band;
 	}
 
 	//@ assignable this.band;
+	//@ ensures this.band == band;
 	public void setBand(String band) {
 		this.band = band;
 	}
 
+	//@ ensures \result == this.year;
 	public /*@ pure @*/ Integer getYear() {
 		return year;
 	}
 
 	//@ assignable this.year;
+	//@ ensures this.year == year;
 	public void setYear(int year) {
 		this.year = year;
 	}
 
 	@Override
+	//@ ensures \result == getName();
 	public String toString() {
 		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
 	}
 
 	@Override
-	//@ requires getBand() != null;
-	//@ requires getBand().length() < 63;
-	//@ requires getBand().length() > 1;
-	//@ requires getYear().intValue() < 2022;
-	//@ requires getYear().intValue() > 1940;
-	public void validate() throws BusinessException {
+	//@ requires this.getBand() != null;
+	//@ requires this.getBand().length() < 63;
+	//@ requires this.getBand().length() > 1;
+	//@ requires this.getYear().intValue() < 2022;
+	//@ requires this.getYear().intValue() > 1940;
+	public /*@ pure @*/ void validate() throws BusinessException {
 		/*
 		String exceptions ="";
 		if(getName().length() >= 63) {
