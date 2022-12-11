@@ -12,6 +12,8 @@ public abstract class Product {
 	private /*@ spec_public @*/ double price;
 	private /*@ spec_public @*/ String barcode;
 	
+	//@ public invariant tags != null;
+	
 	public Product() {
 		this.tags = new ArrayList<Tag>();
 	}

@@ -8,7 +8,8 @@ public class Transaction {
 	private /*@ spec_public @*/ int client;
 	private /*@ spec_public @*/ ArrayList<Integer> productsId;
 	
-	//@ ensures this.productsId != null;
+	//@ public invariant productsId != null;
+	
 	public Transaction() {
 		super();
 		this.productsId = new ArrayList<Integer>();

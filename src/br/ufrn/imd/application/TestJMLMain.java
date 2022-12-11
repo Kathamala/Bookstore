@@ -1,7 +1,11 @@
 package br.ufrn.imd.application;
 
+import java.util.ArrayList;
+
 import br.ufrn.imd.business.ClientService;
 import br.ufrn.imd.business.ProductService;
+import br.ufrn.imd.business.TagService;
+import br.ufrn.imd.business.TransactionService;
 import br.ufrn.imd.exceptions.BusinessException;
 import br.ufrn.imd.exceptions.DataException;
 import br.ufrn.imd.model.Client;
@@ -9,6 +13,7 @@ import br.ufrn.imd.model.ProductBook;
 import br.ufrn.imd.model.ProductGame;
 import br.ufrn.imd.model.ProductVinyl;
 import br.ufrn.imd.model.Tag;
+import br.ufrn.imd.model.Transaction;
 import br.ufrn.imd.model.recommendation.WeightProduct;
 
 public class TestJMLMain {
@@ -45,10 +50,67 @@ public class TestJMLMain {
 		//testRetrieveProductByBarcode();
 		
 		// TagService
+		//testAddTag();
+		//testRemoveTag();
+		//testUpdateTag();
+		//testRetrieveTagById();
+		//testRetrieveTagByName();
 		// TransactionService
+		//testAddTransaction();
+		//testRetrieveTransactionsByClient();
+		//testRetrieveTransactionById();
+		
 		// RecommendationBook
 		// RecommendationGame
 		// RecommendationVinyl	
+	}
+	public static void testAddTag() throws BusinessException, DataException {
+		TagService ts = new TagService();
+		Tag tag = new Tag();
+		tag.setName("testTag");
+		ts.addTag(tag);
+	}
+	public static void testRemoveTag() throws BusinessException, DataException {
+		TagService ts = new TagService();
+		Tag tag = new Tag();
+		tag.setId(20);
+		ts.removeTag(tag);
+	}
+	public static void testUpdateTag() throws BusinessException, DataException {
+		TagService ts = new TagService();
+		Tag tag = new Tag();
+		tag.setId(21);
+		tag.setName("testTag2");
+		ts.updateTag(tag);
+	}
+	public static void testRetrieveTagById() throws BusinessException, DataException {
+		TagService ts = new TagService();
+		ts.retrieveTagById(1);
+	}
+	public static void testRetrieveTagByName() throws BusinessException, DataException {
+		TagService ts = new TagService();
+		ts.retrieveTagByName("viagem");
+	}
+	public static void testAddTransaction() throws BusinessException, DataException {
+		TransactionService ts = new TransactionService();
+		Transaction t = new Transaction();
+		ClientService cs = new ClientService();
+		t.setClient(1);
+		ArrayList<Integer> products = new ArrayList<Integer>();
+		products.add(1);
+		t.setProductsId(products);
+		t.setValue(30.5);
+		ts.addTransaction(t);
+		
+	}
+	public static void testRetrieveTransactionsByClient() throws BusinessException, DataException {
+		TransactionService ts = new TransactionService();
+		ts.retrieveTransactionsByClient(1);
+	}
+	
+	public static void testRetrieveTransactionById() throws BusinessException, DataException {
+		TransactionService ts = new TransactionService();
+		ts.retrieveTransactionById(1);
 	}
 	
 	public static void testProductEquals() throws BusinessException, DataException {
