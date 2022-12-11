@@ -7,13 +7,12 @@ import br.ufrn.imd.exceptions.DataException;
 import br.ufrn.imd.model.Product;
 
 public interface IProductService {
-
-	//@ requires (retrieveProductByBarcode(product.getBarcode())).getBarcode() == null;
+	//@ requires ((retrieveProductByBarcode(product.getBarcode())).getBarcode() == null);
 	public void addProduct(Product product) throws BusinessException, DataException;
 	
 	public void removeProduct(Product product) throws DataException, BusinessException;
 	
-	//@ requires (product.getId() == retrieveProductByBarcode(product.getBarcode()).getId() || retrieveProductByBarcode(product.getBarcode()).getBarcode() == null);
+	//@ requires product.getId() == retrieveProductByBarcode(product.getBarcode()).getId() || retrieveProductByBarcode(product.getBarcode()).getBarcode() == null;
 	public void updateProduct(Product product)throws DataException, BusinessException;
 	
 	public /*@ pure @*/ List<? extends Product> listProducts()throws DataException;

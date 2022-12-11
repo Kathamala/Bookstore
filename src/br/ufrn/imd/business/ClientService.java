@@ -53,6 +53,7 @@ public class ClientService implements IClientService {
 
 	@Override
 	public void removeClient(Client client) throws BusinessException, DataException {
+		/*
 		ITransactionService transactionService = new TransactionService();
 		String exceptions = "";
 		try {
@@ -64,7 +65,7 @@ public class ClientService implements IClientService {
 		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
-		}
+		}*/
 		new ClientDAOJDBC().removeClient(client);
 
 	}

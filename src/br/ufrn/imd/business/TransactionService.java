@@ -67,19 +67,19 @@ public class TransactionService implements ITransactionService {
 	}
 
 	@Override
-	public List<Transaction> listTransactions() throws DataException {
+	public /*@ pure @*/ List<Transaction> listTransactions() throws DataException {
 		return new TransactionDAOJDBC().listTransactions();
 	}
 
 	@Override
-	public ArrayList<Transaction> retrieveTransactionsByClient(int client) throws BusinessException, DataException {
+	public /*@ pure @*/ ArrayList<Transaction> retrieveTransactionsByClient(int client) throws BusinessException, DataException {
 		if(client < 1) {
 			throw new BusinessException("id do cliente deve ser maior do que 0 \n");
 		}
 		return new TransactionDAOJDBC().retrieveTransactionsByClient(client);
 	}
 	
-	public Transaction retrieveTransactionById(int id) throws BusinessException, DataException{
+	public /*@ pure @*/ Transaction retrieveTransactionById(int id) throws BusinessException, DataException{
 		if(id < 1) {
 			throw new BusinessException("id da transação deve ser um número maior do que 0 \n");
 		}
