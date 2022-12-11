@@ -13,14 +13,14 @@ public class TransactionService implements ITransactionService {
 
 	
 	private IProductService productService = new ProductService();
-	
 	@Override
 	public void addTransaction(Transaction transaction) throws DataException, BusinessException {
 		String exceptions = "";
 		IClientService clientService = new ClientService();
-		if(clientService.retrieveClientById(transaction.getClient()).getCpf() == null) {
-			exceptions += "Cliente inexistente \n";
-		}
+		
+		if(clientService.retrieveClientById(transaction.getClient()).getCpf() ==null) {
+			exceptions += "Cliente inexistente \n"; 
+		} 
 		//IBookService bookService = new BookService();
 		ArrayList<Integer> productsId = transaction.getProductsId();
 		for(Integer productId : productsId) {
@@ -47,9 +47,10 @@ public class TransactionService implements ITransactionService {
 	public void updateTransaction(Transaction transaction) throws DataException, BusinessException {
 		String exceptions = "";
 		IClientService clientService = new ClientService();
-		if(retrieveTransactionById(transaction.getId()).getId() == 0) {
-			exceptions += "Transaction inexistente \n";
-		}
+		/*
+		 * if(retrieveTransactionById(transaction.getId()).getId() == 0) { exceptions +=
+		 * "Transaction inexistente \n"; }
+		 */
 		if(clientService.retrieveClientById(transaction.getClient()).getCpf() == null) {
 			exceptions += "Cliente inexistente \n";
 		}

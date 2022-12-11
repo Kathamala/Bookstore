@@ -31,9 +31,9 @@ public class RecommendationBook implements IRecommendation<ProductBook, Integer>
 		if(new ClientService().retrieveClientById(client).getId() == 0) {
 			exceptions += "Cliente n�o existente \n";
 		}
-		if(recommendationAmount < 1) {
-			exceptions += "Deve ser pedida ao menos uma recomenda��o \n";
-		}
+//		if(recommendationAmount < 1) {
+//			exceptions += "Deve ser pedida ao menos uma recomenda��o \n";
+//		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
 		}

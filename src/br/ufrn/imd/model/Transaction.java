@@ -8,7 +8,9 @@ public class Transaction {
 	private /*@ spec_public @*/ int client;
 	private /*@ spec_public @*/ ArrayList<Integer> productsId;
 	
-	//@ ensures this.productsId != null;
+	//@ public invariant productsId != null;
+	
+	//@ ensures productsId.size() == 0;
 	public Transaction() {
 		super();
 		this.productsId = new ArrayList<Integer>();
@@ -59,7 +61,7 @@ public class Transaction {
 	}
 	
 	@Override
-	public String toString() {
+	public /*@ pure @*/ String toString() {
 		return "id: "+id+ " client: " + client + " value: "+value+ " products: "+ productsId;
 	}
 	

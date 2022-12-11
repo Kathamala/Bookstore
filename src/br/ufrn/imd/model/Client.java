@@ -45,7 +45,7 @@ public class Client {
 	}
 
 	@Override
-	public String toString() {
+	public /*@ pure @*/ String toString() {
 		return "Client [id=" + id + ", cpf=" + cpf + ", name=" + name + "]";
 	}
 }

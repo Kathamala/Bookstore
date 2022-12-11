@@ -31,8 +31,8 @@ public class Tag {
 		this.name = name;
 	}
 	
-	@Override
-	public String toString() {
+	
+	public /*@ pure @*/ String toString() {
 		return "id:"+id+" name: "+name;
 	}
 	

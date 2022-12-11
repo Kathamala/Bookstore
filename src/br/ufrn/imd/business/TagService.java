@@ -23,13 +23,13 @@ public class TagService implements ITagService {
 	
 	@Override
 	public void addTag(Tag tag) throws BusinessException, DataException {
-		String exceptions = "";
-		if(retrieveTagByName(tag.getName()).getName()!=null) {
-			exceptions += "Nome da tag já registrado no sistema \n";
-		}
-		if(!exceptions.equals("")) {
-			throw new BusinessException(exceptions);
-		}
+//		String exceptions = "";
+//		if(retrieveTagByName(tag.getName()).getName()!=null) {
+//			exceptions += "Nome da tag já registrado no sistema \n";
+//		}
+//		if(!exceptions.equals("")) {
+//			throw new BusinessException(exceptions);
+//		}
 		new TagDAOJDBC().addTag(tag);
 	}
 
@@ -65,36 +65,36 @@ public class TagService implements ITagService {
 
 	@Override
 	public Tag retrieveTagById(int id) throws DataException, BusinessException{
-		if(id < 1) {
-			throw new BusinessException("id deve ser um número maior do que 0 \n");
-		}
+//		if(id < 1) {
+//			throw new BusinessException("id deve ser um número maior do que 0 \n");
+//		}
 		return new TagDAOJDBC().retrieveTagById(id);
 	}
 
 	@Override
 	public Tag retrieveTagByName(String name) throws DataException, BusinessException {
-		String exceptions = "";
-		if(name.length() <= 1) {
-			exceptions += "O nome da tag deve ter ao menos 2 letras \n"; 
-		}
-		else if(name.length() >= 32) {
-			exceptions += "O nome da tag deve ser menor que 32 caracteres \n ";
-		}
-		if(!exceptions.equals("")) {
-			throw new BusinessException(exceptions);
-		}
+//		String exceptions = "";
+//		if(name.length() <= 1) {
+//			exceptions += "O nome da tag deve ter ao menos 2 letras \n"; 
+//		}
+//		else if(name.length() >= 32) {
+//			exceptions += "O nome da tag deve ser menor que 32 caracteres \n ";
+//		}
+//		if(!exceptions.equals("")) {
+//			throw new BusinessException(exceptions);
+//		}
 		return new TagDAOJDBC().retrieveTagByName(name);
 	}
 
 	@Override
 	public void updateTag(Tag tag) throws BusinessException, DataException {
-		String exceptions = "";
-		if(retrieveTagByName(tag.getName()).getName()!=null) {
-			exceptions += "Nome da tag já registrado no sistema \n";
-		}
-		if(!exceptions.equals("")) {
-			throw new BusinessException(exceptions);
-		}
+//		String exceptions = "";
+//		if(retrieveTagByName(tag.getName()).getName()!=null) {
+//			exceptions += "Nome da tag já registrado no sistema \n";
+//		}
+//		if(!exceptions.equals("")) {
+//			throw new BusinessException(exceptions);
+//		}
 		new TagDAOJDBC().updateTag(tag);
 	}
 

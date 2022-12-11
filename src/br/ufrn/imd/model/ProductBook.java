@@ -24,7 +24,7 @@ public class ProductBook extends Product{
 	
 	@Override
 	//@ ensures \result == getName();
-	public String toString() {
+	public /*@ pure @*/ String toString() {
 		return getName();
 	}
 	
