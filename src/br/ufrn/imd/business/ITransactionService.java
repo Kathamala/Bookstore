@@ -15,9 +15,9 @@ public interface ITransactionService {
 	
 	public void updateTransaction(Transaction transaction) throws DataException, BusinessException;
 	
-	public List<Transaction> listTransactions() throws DataException;
+	public /*@ pure @*/ List<Transaction> listTransactions() throws DataException;
 	
-	public ArrayList<Transaction> retrieveTransactionsByClient(int client) throws BusinessException, DataException;
+	public /*@ pure @*/ ArrayList<Transaction> retrieveTransactionsByClient(int client) throws BusinessException, DataException;
 
-	public Transaction retrieveTransactionById(int id) throws BusinessException, DataException;	
+	public /*@ pure @*/ Transaction retrieveTransactionById(int id) throws BusinessException, DataException;	
 }

@@ -8,6 +8,7 @@ import br.ufrn.imd.model.Client;
 import br.ufrn.imd.model.ProductBook;
 import br.ufrn.imd.model.ProductGame;
 import br.ufrn.imd.model.ProductVinyl;
+import br.ufrn.imd.model.Tag;
 import br.ufrn.imd.model.recommendation.WeightProduct;
 
 public class TestJMLMain {
@@ -28,6 +29,7 @@ public class TestJMLMain {
 		// WeightTag		
 		
 		// ClientService
+		testRemoveClient();
 		testAddClient();
 		testRetrieveClientByCpf();
 		testUpdateClient();
@@ -35,11 +37,12 @@ public class TestJMLMain {
 		testRetrieveClientById();
 		
 		// ProductService
-		//testAddProduct();
-		//testUpdateProduct();
+		testRemoveProduct();
+		testAddProduct();
+		testUpdateProduct();
 		testListProducts();
 		testRetrieveProductById();
-		//testRetrieveProductByBarcode();
+		testRetrieveProductByBarcode();
 		
 		// TagService
 		// TransactionService
@@ -98,34 +101,35 @@ public class TestJMLMain {
 		wp.compareTo(wp2);			
 	}
 	
+	public static void testRemoveClient() throws BusinessException, DataException {
+		ClientService c = new ClientService();
+		Client client = c.retrieveClientByCpf("99999999999");
+		c.removeClient(client);
+	}
+	
 	public static void testAddClient() throws BusinessException, DataException {
 		ClientService c = new ClientService();
 		Client client = new Client();
-		client.setName("Jorge");
-		client.setCpf("70925215481");
-		//c.addClient(client);
+		client.setName("Jorges");
+		client.setCpf("99999999999");
+		c.addClient(client);
 	}
 	
 	public static void testRetrieveClientByCpf() {
 		ClientService c = new ClientService();
 		try {
-			c.retrieveClientByCpf("70925215481");
+			c.retrieveClientByCpf("99999999999");
 			//c.retrieveClientByCpf("");
 		} catch (BusinessException | DataException e) {
 			e.printStackTrace();
 		}
 	}	
 	
-	public static void testUpdateClient() {
+	public static void testUpdateClient() throws BusinessException, DataException {
 		ClientService c = new ClientService();
-		Client client = new Client();
-		client.setCpf("12345678912");
+		Client client = c.retrieveClientByCpf("99999999999");
 		client.setName("Jorge");
-		try {
-			c.updateClient(client);
-		} catch (BusinessException | DataException e) {
-			e.printStackTrace();
-		}
+		c.updateClient(client);
 	}		
 	
 	public static void testListClients() throws DataException {
@@ -138,10 +142,16 @@ public class TestJMLMain {
 		c.retrieveClientById(1);
 	}		
 	
+	public static void testRemoveProduct() throws BusinessException, DataException {
+		ProductService ps = new ProductService();
+		ProductBook pb = (ProductBook) ps.retrieveProductByBarcode("9999999999999");
+		ps.removeProduct(pb);
+	}		
+	
 	public static void testAddProduct() throws BusinessException, DataException {
 		ProductService ps = new ProductService();
 		ProductBook pb = new ProductBook();
-		pb.setBarcode("7092521548123");
+		pb.setBarcode("9999999999999");
 		pb.setDescription("Description");
 		pb.setAuthor("Author");
 		pb.setName("Name");
@@ -151,9 +161,8 @@ public class TestJMLMain {
 	
 	public static void testUpdateProduct() throws BusinessException, DataException {
 		ProductService ps = new ProductService();
-		ProductBook pb = new ProductBook();
-		pb.setBarcode("7092521548123");
-		pb.setDescription("Description");
+		ProductBook pb = (ProductBook) ps.retrieveProductByBarcode("9999999999999");
+		pb.setDescription("Description Up");
 		pb.setAuthor("Author");
 		pb.setName("Name");
 		pb.setPrice(12);
@@ -172,7 +181,7 @@ public class TestJMLMain {
 	
 	public static void testRetrieveProductByBarcode() throws BusinessException, DataException {
 		ProductService ps = new ProductService();
-		ps.retrieveProductByBarcode("Barcode");
+		ps.retrieveProductByBarcode("7092521548123");
 	}
 }
 

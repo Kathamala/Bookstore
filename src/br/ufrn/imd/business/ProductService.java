@@ -12,7 +12,7 @@ import br.ufrn.imd.model.Transaction;
 
 public class ProductService implements IProductService {
 
-	ProductDAOJDBC productDAO;
+	/*@ spec_public @*/ ProductDAOJDBC productDAO;
 	
 	public ProductService(){
 		productDAO = Distributor.getInstance().createProductDAO();

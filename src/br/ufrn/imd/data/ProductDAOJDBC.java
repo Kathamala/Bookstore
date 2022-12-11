@@ -17,7 +17,7 @@ public abstract class ProductDAOJDBC {
 	abstract public void addProduct(Product product)throws DataException;
 	abstract public void removeProduct(Product product)throws DataException;
 	abstract public void updateProduct(Product product)throws DataException;
-	abstract public List<? extends Product> listProducts()throws DataException;
-	abstract public Product retrieveProductById(int id)throws DataException;
-	abstract public Product retrieveProductByBarcode(String barcode)throws DataException;
+	abstract public /*@ pure @*/ List<? extends Product> listProducts()throws DataException;
+	abstract public /*@ pure @*/ Product retrieveProductById(int id)throws DataException;
+	abstract public /*@ pure @*/ Product retrieveProductByBarcode(String barcode)throws DataException;
 }
