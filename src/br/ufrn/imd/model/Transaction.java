@@ -59,7 +59,7 @@ public class Transaction {
 	}
 	
 	@Override
-	public String toString() {
+	public /*@ pure @*/ String toString() {
 		return "id: "+id+ " client: " + client + " value: "+value+ " products: "+ productsId;
 	}
 	

@@ -35,7 +35,7 @@ public class ProductVinyl extends Product{
 
 	@Override
 	//@ ensures \result == getName();
-	public String toString() {
+	public /*@ pure @*/ String toString() {
 		return getName();//"id: "+id+" name: "+name + " barcode: "+barcode;//+" description: "+description+" tags: "+tags+" price: "+price+" author: "+author;
 	}
 

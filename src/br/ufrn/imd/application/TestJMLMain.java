@@ -29,20 +29,20 @@ public class TestJMLMain {
 		// WeightTag		
 		
 		// ClientService
-		testRemoveClient();
-		testAddClient();
-		testRetrieveClientByCpf();
-		testUpdateClient();
+		//testRemoveClient();
+		//testAddClient();
+		//testRetrieveClientByCpf();
+		//testUpdateClient();
 		testListClients();
-		testRetrieveClientById();
+		//testRetrieveClientById();
 		
 		// ProductService
-		testRemoveProduct();
-		testAddProduct();
-		testUpdateProduct();
-		testListProducts();
-		testRetrieveProductById();
-		testRetrieveProductByBarcode();
+		//testRemoveProduct();
+		//testAddProduct();
+		//testUpdateProduct();
+		//testListProducts();
+		//testRetrieveProductById();
+		//testRetrieveProductByBarcode();
 		
 		// TagService
 		// TransactionService
