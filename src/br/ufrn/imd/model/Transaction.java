@@ -10,6 +10,7 @@ public class Transaction {
 	
 	//@ public invariant productsId != null;
 	
+	//@ ensures productsId.size() == 0;
 	public Transaction() {
 		super();
 		this.productsId = new ArrayList<Integer>();

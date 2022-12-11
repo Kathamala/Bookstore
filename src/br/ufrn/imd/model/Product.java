@@ -14,6 +14,7 @@ public abstract class Product {
 	
 	//@ public invariant tags != null;
 	
+	//@ ensures tags.size() == 0;
 	public Product() {
 		this.tags = new ArrayList<Tag>();
 	}

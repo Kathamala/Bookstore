@@ -31,9 +31,9 @@ public class RecommendationGame implements IRecommendation<ProductGame, String>{
 		if(new ClientService().retrieveClientById(client).getId() == 0) {
 			exceptions += "Cliente não existente \n";
 		}
-		if(recommendationAmount < 1) {
-			exceptions += "Deve ser pedida ao menos uma recomendação \n";
-		}
+//		if(recommendationAmount < 1) {
+//			exceptions += "Deve ser pedida ao menos uma recomendação \n";
+//		}
 		if(!exceptions.equals("")) {
 			throw new BusinessException(exceptions);
 		}

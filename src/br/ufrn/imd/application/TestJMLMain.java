@@ -1,11 +1,15 @@
 package br.ufrn.imd.application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import br.ufrn.imd.business.ClientService;
 import br.ufrn.imd.business.ProductService;
 import br.ufrn.imd.business.TagService;
 import br.ufrn.imd.business.TransactionService;
+import br.ufrn.imd.business.recommendation.RecommendationBook;
+import br.ufrn.imd.business.recommendation.RecommendationGame;
+import br.ufrn.imd.business.recommendation.RecommendationVinyl;
 import br.ufrn.imd.exceptions.BusinessException;
 import br.ufrn.imd.exceptions.DataException;
 import br.ufrn.imd.model.Client;
@@ -20,17 +24,17 @@ public class TestJMLMain {
 	public static void main(String[] args) throws BusinessException, DataException {
 		// Client		
 		// Product	
-		testProductEquals();
+		//testProductEquals();
 		// ProductBook
-		testProductBookValidate();
+		//testProductBookValidate();
 		// ProductGame
-		testProductGameValidate();
+		//testProductGameValidate();
 		// ProductVinyl
-		testProductVinykValidate();
+		//testProductVinykValidate();
 		// Tag
 		// Transaction
 		// WeightProduct
-		testWeightProductCompareTo();
+		//testWeightProductCompareTo();
 		// WeightTag		
 		
 		// ClientService
@@ -38,7 +42,7 @@ public class TestJMLMain {
 		//testAddClient();
 		//testRetrieveClientByCpf();
 		//testUpdateClient();
-		testListClients();
+		//testListClients();
 		//testRetrieveClientById();
 		
 		// ProductService
@@ -60,10 +64,34 @@ public class TestJMLMain {
 		//testRetrieveTransactionsByClient();
 		//testRetrieveTransactionById();
 		
+		
+		//Caso vá testar os seguintes métodos, 
+		//tenha certeza que a instância no InstanceController para a instância correta de cada tipo de recomendação
 		// RecommendationBook
+		//testRetrieveRecommendationsForClientBook();
 		// RecommendationGame
+		//testRetrieveRecommendationsForClientGame();
 		// RecommendationVinyl	
+		//testRetrieveRecommendationsForClientVinyl();
 	}
+	public static void testRetrieveRecommendationsForClientBook() throws DataException, BusinessException {
+		RecommendationBook rec = new RecommendationBook();
+		System.out.println(rec.retrieveRecommendationsForClient(1, 1, null));
+	}
+	public static void testRetrieveRecommendationsForClientGame() throws DataException, BusinessException {
+		RecommendationGame rec = new RecommendationGame();
+		HashMap<String, String> options = new HashMap<String, String>();
+		options.put("platform", "PS5");
+		System.out.println(rec.retrieveRecommendationsForClient(1, 1, options));
+	}
+	public static void testRetrieveRecommendationsForClientVinyl() throws DataException, BusinessException {
+		RecommendationVinyl rec = new RecommendationVinyl();
+		HashMap<String, Integer> options = new HashMap<String, Integer>();
+		options.put("bound1", 1975);
+		options.put("bound2", 1985);
+		System.out.println(rec.retrieveRecommendationsForClient(1, 1, options));
+	}
+	
 	public static void testAddTag() throws BusinessException, DataException {
 		TagService ts = new TagService();
 		Tag tag = new Tag();
